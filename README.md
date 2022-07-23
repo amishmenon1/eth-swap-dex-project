@@ -1,65 +1,41 @@
-# ETH Cash Flow Block Explorer
+# EthSwap DEX Project
 
-Deployed site: https://amishmenon1.github.io/blockchain-fitness-voting/
+_THIS PROJECT IS FOR DEVELOPMENT AND TESTING ONLY_
 
-This project is a (condensed) Ethereum block explorer project that analyzes transactions within a given range of blocks. The application integrates with Metamask. Given a range of block numbers, the following data is generated:
+This EthSwap DEX allows you to swap between ETH and a custom token using a local testnet via Ganache.
 
-1. Total ETH transferred
-2. Total # transactions
-3. Total # contract addresses
-4. A list of total ETH values (Wei), filterable by sender/recipient
+## Prerequisites
 
-# App Flow
+1. Node version 10.15.0 / npm version 6.4.1
+   - if you have multiple versions, you can use NVM to switch between them
+   - if `nvm` is not accessible globally in your terminal, you can run:
+     - `source ~/.nvm/nvm.sh`
+     - then you can run `nvm use 10.5.0`
+2. Truffle version 5.0.0 (core: 5.0.0)
+3. Solidity version 0.5.0 (solc-js)
+4. identicon.js version 2.3.3
+5. Ganache version 2.5.4 (2.5.4.1367)
 
-User inputs a Start Block (required), and an End Block (optional). If End Block is not provided, the latest block number will be used. The system will collect all blocks and transactions within the given block range. The transaction data will be processed into a list of totals and displayed in a table. The table can be filtered on Sender or Recipient, and the corresponding totals are displayed.
+## Setup
 
-## Cloning and Running the UI Locally
+1. Install identicon.js version 2.3.3
 
-Clone the project into local
+   - `npm install identicon.js@^2.3.3`
 
-Install all the npm packages.
+2. Install project dependencies
 
-```
-cd eth-cash-flow-tool/
-npm install
-```
+   - `npm install`
 
-In order to run the application, type the following commands
+3. Ensure Ganache is running and the port matches `networks.development.port` in `truffle-config.js`
 
-```
-cd eth-cash-flow-tool/
-npm start
-```
+4. Compile the smart contracts and migrate them into the build ("/abis") folder
 
-The Application Runs on **localhost:3000**
+   - `truffle compile`
+   - `truffle migrate`
 
-## Developer Docs
+5. Open a separate terminal within the project and run the node server
+   - `npm run start`
 
-### Prerequisites
+## Upon Successful Load
 
-1. Install Node v16.13.0
-   - Refer to https://nodejs.org/en/ to install nodejs
-2. Install Ethers.js v5.6.8
-   - `npm install ethers@5.6.8`
-3. Install Metamask and configure connection to any network
-
-### Work In Progress
-
-1. Unit testing with `react-testing-library`
-2. Logging with `react-logger-lib`
-3. Remove `console.log` statements
-
-### High Level Component Architecture
-
-![](component-architecture-diagram.png)
-
-## Resources
-
-**create-react-app** :
-https://github.com/facebook/create-react-app
-
-**React Bootstrap** : https://react-bootstrap.github.io/getting-started/introduction/
-
-```
-
-```
+![EthSwap Home Page](home-page-screenshot.png "EthSwap DEX")
