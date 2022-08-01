@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { ButtonGroup, Row } from "react-bootstrap";
 import { ToggleButton } from "./toggle-button";
 
-function ToggleGroup({ toggleCb }) {
+function ToggleGroup({ toggleFn }) {
   console.log("ToggleGroup --- render");
-  const [buySelected, setBuySelected] = useState(true);
+  const [selected, setSelected] = useState(true);
 
-  function toggleButton() {
-    setBuySelected(!buySelected);
-    toggleCb();
+  function handleToggle(btnRef) {
+    setSelected(!selected);
+    toggleFn(btnRef);
   }
+
   const styles = {
     toggleContainer: {
       marginBottom: "15px",
@@ -30,19 +31,23 @@ function ToggleGroup({ toggleCb }) {
     <Row style={styles.toggleContainer}>
       <ButtonGroup style={styles.toggleGroup} aria-label="toggle-group">
         <ToggleButton
+          id="buy-toggle"
+          aria-label="Buy"
           style={styles.button}
           hoverEnabled={false}
-          selected={buySelected}
-          onClick={toggleButton}
+          selected={selected}
+          onClick={handleToggle}
         >
           {" "}
           Buy{" "}
         </ToggleButton>
         <ToggleButton
+          id="sell-toggle"
+          aria-label="Sell"
           style={styles.button}
           hoverEnabled={false}
-          selected={!buySelected}
-          onClick={toggleButton}
+          selected={!selected}
+          onClick={handleToggle}
         >
           {" "}
           Sell{" "}

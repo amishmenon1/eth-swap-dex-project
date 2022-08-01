@@ -2,9 +2,14 @@ import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
-import { AppHeader, AppFooter, DexContextProvider } from "components";
+import {
+  AppHeader,
+  AppFooter,
+  DexContainer,
+  DexContextProvider,
+} from "components";
 
-const App = () => {
+function App() {
   console.log("App component -- render");
   const styles = {
     app: {
@@ -12,6 +17,7 @@ const App = () => {
       textAlign: "center",
       backgroundColor: "#468557",
       color: "rgb(255, 255, 255)",
+      transform: "translate3d(0, 0, 0)",
     },
   };
   return (
@@ -19,11 +25,11 @@ const App = () => {
       <div style={styles.app}>
         <AppHeader />
         <ToastContainer />
-        <DexContextProvider />
+        <DexContainer />
         <AppFooter />
       </div>
     </>
   );
-};
+}
 
 export default App;

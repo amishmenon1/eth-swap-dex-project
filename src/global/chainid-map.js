@@ -1,14 +1,11 @@
 import { ethers } from "ethers";
 
 export const chainIdToNameMap = {
-  1: "Ethereum",
+  // 1: "Ethereum",
   3: "Ropsten",
-  4: "Rinkeby",
-  5: "Goerli",
-  42: "Kovan",
-  // 61: "Ethereum Classic",
-  // 62: "Morden",
-  // 31337: "Localhost",
+  // 4: "Rinkeby",
+  // 5: "Goerli",
+  // 42: "Kovan",
 };
 
 const chainIdToEndpointMap = {
@@ -17,7 +14,6 @@ const chainIdToEndpointMap = {
   // 4: `https://rinkeby.infura.io/v3/${process.env.REACT_APP_INFURA_PROJECT_ID}`,
   // 5: `https://goerli.infura.io/v3/${process.env.REACT_APP_INFURA_PROJECT_ID}`,
   // 42: `https://kovan.infura.io/v3/${process.env.REACT_APP_INFURA_PROJECT_ID}`,
-  // 31337: "http://localhost:8545",
 };
 
 export const DEFAULT_CHAIN_ID = "0x5";

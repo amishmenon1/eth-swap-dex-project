@@ -3,12 +3,27 @@ import { useMetaMask } from "metamask-react";
 import WalletStatus from "global/wallet-status";
 import { toast } from "react-toastify";
 import { ConnectedDex, DexDisplay, Loader } from "components";
+import { isChainIdSupported } from "global/chainid-map";
 
-function Dex({ input, output, connectedCallback }) {
+function DisconnectedDex({ input, output }) {
+  return <DexDisplay input={input} output={output} />;
+}
+
+function Dex({ status, input, output, connectedCallback }) {
   console.log("Dex --- render");
-  const { status } = useMetaMask();
+  const { chainId } = useMetaMask();
+  function clearBalances(input, output) {
+    input.balance = "0";
+    output.balance = "0";
+  }
 
-  let display = <DexDisplay input={input} output={output} />;
+  function connectionErrorCallback() {
+    toast.warn("Unsupported chain. Check connection.", {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+    });
+  }
+  let display;
 
   switch (status) {
     case WalletStatus.INITIALIZING: {
@@ -16,6 +31,7 @@ function Dex({ input, output, connectedCallback }) {
       break;
     }
     case WalletStatus.CONNECTING: {
+      display = <DisconnectedDex input={input} output={output} />;
       break;
     }
     case WalletStatus.UNAVAILABLE: {
@@ -24,15 +40,19 @@ function Dex({ input, output, connectedCallback }) {
         autoClose: 5000,
       });
       console.log("status: ", status);
+      display = <DisconnectedDex input={input} output={output} />;
       break;
     }
     case WalletStatus.NOT_CONNECTED: {
       console.log("status: ", status);
+      clearBalances(input, output);
+      display = <DisconnectedDex input={input} output={output} />;
       break;
     }
     case WalletStatus.CONNECTED: {
       display = (
         <ConnectedDex
+          connectionErrorCallback={connectionErrorCallback}
           connectedCallback={connectedCallback}
           input={input}
           output={output}

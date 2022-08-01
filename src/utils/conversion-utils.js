@@ -13,9 +13,9 @@ export function toEther(wei) {
 }
 
 export function formatUnits(eth, decimals) {
-  return ethers.utils.formatUnits(eth, decimals);
+  return ethers.utils.formatUnits(eth || "0", decimals);
 }
 
 export function round(numberString, decimals) {
-  return parseFloat(numberString).toFixed(decimals);
+  return parseFloat(numberString || "0").toFixed(decimals);
 }

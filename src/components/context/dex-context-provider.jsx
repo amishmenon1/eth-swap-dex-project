@@ -1,20 +1,17 @@
 import React, { useState, useReducer, useEffect } from "react";
-import { Row, Button } from "react-bootstrap";
 import TransactionStatus from "global/transaction-status";
 import { transactionStatusReducer } from "global/reducer/transaction-status-reducer";
-import { useConnectedMetaMask, useMetaMask } from "metamask-react";
-import WalletStatus from "global/wallet-status";
-import { toast } from "react-toastify";
-import { Dialog, DialogTitle, DialogContent } from "@mui/material";
-import { useReadonlyVotingContract } from "global/dex-contract";
+import { useMetaMask } from "metamask-react";
 import { Tokens } from "global/tokens";
-import { Dex, ToggleGroup } from "components";
+import { Dex } from "components";
 
 export const DexContext = React.createContext();
 
-export function DexContextProvider() {
+export function DexContextProvider({ buySelected }) {
   console.log("DexContextProvider --- render");
   const [swapState, dispatch] = useReducer(transactionStatusReducer, {});
+  const [toggle, setToggle] = useState(false);
+  const { status } = useMetaMask();
   const [dexState, setDexState] = useState({
     input: {
       img: "",
@@ -24,18 +21,19 @@ export function DexContextProvider() {
     output: {
       img: "",
       balance: null,
-      token: Tokens.CHAINLINK,
+      token: Tokens.MCT,
     },
   });
-  const dexContract = null; //useReadonlyVotingContract();
-  const { status } = useMetaMask();
   const { input, output } = dexState;
 
   useEffect(() => {
-    console.log("DexContextProvider --- status change: ", status);
-  }, [status]);
+    if (toggle) {
+      toggleDexForm();
+    }
+    return () => setToggle(true);
+  }, [buySelected, toggle]);
 
-  function toggleCb() {
+  function toggleDexForm() {
     const { input, output } = dexState;
     const newInput = { ...output };
     const newOutput = { ...input };
@@ -47,13 +45,15 @@ export function DexContextProvider() {
   }
 
   return (
-    <DexContext.Provider value={[swapState, dispatch]}>
-      <ToggleGroup toggleCb={toggleCb} />
-      <Dex
-        input={input}
-        output={output}
-        connectedCallback={setAccountBalance}
-      />
-    </DexContext.Provider>
+    <>
+      <DexContext.Provider value={[swapState, dispatch]}>
+        <Dex
+          status={status}
+          input={input}
+          output={output}
+          connectedCallback={setAccountBalance}
+        />
+      </DexContext.Provider>
+    </>
   );
 }
