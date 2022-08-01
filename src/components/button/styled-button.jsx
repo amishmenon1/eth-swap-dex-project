@@ -1,23 +1,26 @@
-import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import React, { useState, useRef } from "react";
 
 function StyledButton({
   onClick,
   disabled = false,
   hoverEnabled = false,
-  variant = "contained",
   style = {},
   children,
 }) {
   console.log("StyledButton --- render");
   const [isHovering, setIsHovering] = useState(false);
-  const handleMouseEnter = (e) => {
-    setIsHovering(true);
-  };
+  const buttonRef = useRef();
 
-  const handleMouseLeave = (e) => {
+  function handleMouseEnter(e) {
+    setIsHovering(true);
+  }
+
+  function handleMouseLeave(e) {
     setIsHovering(false);
-  };
+  }
+  function handleClick(e) {
+    onClick(buttonRef);
+  }
 
   const buttonStyles = {
     ...style,
@@ -26,16 +29,18 @@ function StyledButton({
   };
 
   return (
-    <Button
-      variant={variant}
-      onClick={onClick}
+    <button
+      type="button"
+      onClick={handleClick}
       onMouseEnter={hoverEnabled ? handleMouseEnter : null}
       onMouseLeave={hoverEnabled ? handleMouseLeave : null}
       style={buttonStyles}
       disabled={disabled}
+      className="btn btn-primary"
+      ref={buttonRef}
     >
       {children}
-    </Button>
+    </button>
   );
 }
 

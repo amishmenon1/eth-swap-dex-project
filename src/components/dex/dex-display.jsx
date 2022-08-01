@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { DexContext } from "components/context";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import { StyledButton } from "components";
 import { round } from "utils/conversion-utils";
 
 function DexDisplay({ input, output }) {
@@ -57,10 +57,14 @@ function DexDisplay({ input, output }) {
       <Col style={styles.formContainer}>
         <Form style={styles.dexForm} onSubmit={() => {}}>
           <Form.Group>
-            <Form.Label style={styles.formLabel}>
+            <Form.Label htmlFor="input-control" style={styles.formLabel}>
               Balance: {inputBalance} {input.token.symbol}
             </Form.Label>
-            <Form.Control type="text" placeholder={input.token.symbol} />
+            <Form.Control
+              id="input-control"
+              type="text"
+              placeholder={input.token.symbol}
+            />
           </Form.Group>
           {spacer(20)}
           <Form.Group>
@@ -70,9 +74,13 @@ function DexDisplay({ input, output }) {
             <Form.Control type="text" placeholder={output.token.symbol} />
           </Form.Group>
           {spacer(20)}
-          <Button style={styles.submitButton} variant="primary" type="submit">
+          <StyledButton
+            hoverEnabled={true}
+            style={styles.submitButton}
+            type="submit"
+          >
             SWAP!
-          </Button>
+          </StyledButton>
         </Form>
       </Col>
     </Row>

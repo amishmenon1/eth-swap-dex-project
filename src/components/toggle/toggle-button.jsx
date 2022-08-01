@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyledButton } from "components";
 
 export function ToggleButton({
@@ -16,12 +16,7 @@ export function ToggleButton({
     backgroundColor: selected ? "darkgreen" : "lightgray",
   };
   return (
-    <StyledButton
-      hoverEnabled={hoverEnabled}
-      onClick={onClick}
-      variant={selected ? "primary" : "secondary"}
-      style={styles}
-    >
+    <StyledButton hoverEnabled={hoverEnabled} onClick={onClick} style={styles}>
       {children}
     </StyledButton>
   );

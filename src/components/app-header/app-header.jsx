@@ -1,4 +1,3 @@
-import { useMetaMask } from "metamask-react";
 import React from "react";
 import { AccountDisplay } from "components/user";
 

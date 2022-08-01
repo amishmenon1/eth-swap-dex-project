@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import { useMetaMask } from "metamask-react";
 import { StyledButton } from "components";
@@ -21,8 +21,6 @@ function ConnectWalletButton() {
     },
   };
 
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
   return (
     <>
       <StyledButton

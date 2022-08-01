@@ -5,7 +5,7 @@ import { AppHeader } from "./app-header";
 import { AppFooter } from "./app-footer";
 import { StyledButton } from "./button";
 import { Loader } from "./loader";
-import { DexDisplay, ConnectedDex, Dex } from "./dex";
+import { DexDisplay, ConnectedDex, Dex, DexContainer } from "./dex";
 import { ToggleGroup } from "./toggle";
 
 export {
@@ -19,6 +19,7 @@ export {
   DexDisplay,
   ConnectedDex,
   Dex,
+  DexContainer,
   Loader,
   ToggleGroup,
 };
