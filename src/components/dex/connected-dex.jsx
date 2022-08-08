@@ -35,7 +35,6 @@ function ConnectedDex({
     async function updateBalances() {
       const weiBalance = await provider.getBalance(account);
       const ethBalance = formatUnits(weiBalance, 18).toString();
-      debugger;
       if (input.token.symbol === Tokens.ETHEREUM.symbol) {
         input.balance = ethBalance;
         const outputBalance = await mctTokenContract.functions.balanceOf(

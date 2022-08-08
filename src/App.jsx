@@ -2,12 +2,7 @@ import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
-import {
-  AppHeader,
-  AppFooter,
-  DexContainer,
-  DexContextProvider,
-} from "components";
+import { AppHeader, AppFooter, DexContainer } from "components";
 
 function App() {
   console.log("App component -- render");

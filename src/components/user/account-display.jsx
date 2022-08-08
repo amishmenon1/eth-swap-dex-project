@@ -53,7 +53,9 @@ function AccountDisplay() {
   console.log("AccountDisplay --- render");
 
   const { status } = useMetaMask();
-
+  useEffect(() => {
+    console.log("AccountDisplay - metamask status: ", status);
+  }, []);
   return (
     <>
       {status !== "connected" ? <NotConnectedAccount /> : <ConnectedAccount />}

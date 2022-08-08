@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import Disclaimer from ".";
+import { Disclaimer } from ".";
 
 describe("Disclaimer component", () => {
   it("is displayed with correct message", () => {

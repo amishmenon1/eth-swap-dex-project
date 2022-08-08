@@ -35,6 +35,7 @@ function DexDisplay({ input, output }) {
     submitButton: {
       marginTop: "20px",
       width: "100%",
+      backgroundColor: "limegreen",
     },
     formLabel: {
       display: "flex",
@@ -61,9 +62,10 @@ function DexDisplay({ input, output }) {
               Balance: {inputBalance} {input.token.symbol}
             </Form.Label>
             <Form.Control
-              id="input-control"
+              id="input-token"
               type="text"
               placeholder={input.token.symbol}
+              ariaLabel="input-token"
             />
           </Form.Group>
           {spacer(20)}
@@ -71,7 +73,12 @@ function DexDisplay({ input, output }) {
             <Form.Label style={styles.formLabel}>
               Balance: {outputBalance} {output.token.symbol}
             </Form.Label>
-            <Form.Control type="text" placeholder={output.token.symbol} />
+            <Form.Control
+              id="output-token"
+              ariaLabel="output-token"
+              type="text"
+              placeholder={output.token.symbol}
+            />
           </Form.Group>
           {spacer(20)}
           <StyledButton
